@@ -205,7 +205,8 @@ class ComposerShell extends AppShell {
 				$create = $this->in('Overwrite the existing and create a default pre-configured composer.json?', array('y', 'n'), 'y');
 
 				if ($create === 'y') {
-					$json = new stdClass;
+					$json = new stdClass();
+                    $json->config = new stdClass();
 					$json->config->{'vendor-dir'} = 'Vendor';
 					$jsonSave = true;
 				} else {
@@ -214,12 +215,13 @@ class ComposerShell extends AppShell {
 			}
 
 			if (empty($json->config->{'vendor-dir'})) {
-				$json->config = new stdClass;
+				$json->config = new stdClass();
 				$json->config->{'vendor-dir'} = 'Vendor';
 				$jsonSave = true;
 			}
 		} else {
-			$json = new stdClass;
+			$json = new stdClass();
+            $json->config = new stdClass();
 			$json->config->{'vendor-dir'} = 'Vendor';
 			$jsonSave = true;
 		}
